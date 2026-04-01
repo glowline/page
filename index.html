@@ -2,53 +2,75 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Glowline</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: #121212;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            
+            color: white;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            
-            min-height: 100vh;
-            text-align: center;
+            height: 100vh;
+            user-select: none;
+            overflow: hidden;
+            box-sizing: border-box;
         }
-
         h1 {
-            font-size: 4rem;
-            /* Сделаем текст жирным */
-            font-weight: bold;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            text-align: center;
+            margin: 0 10px 10px;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
         }
-
-        p {
-            font-size: 1.2rem;
-            color: #aaaaaa;
-            margin-top: 0;
+        .subtitle {
+            text-align: center;
+            margin: 0 10px 30px;
+            font-size: clamp(0.8rem, 3vw, 1rem);
+            color: #aaa;
         }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            p {
-                font-size: 1rem;
-            }
+        #image-container {
+            max-width: 90%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
+        }
+        #image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
 </head>
 <body>
+    <h1>Ты на правильном пути!</h1>
+    <p class="subtitle">Если здесь не случайно</p>
+    <div id="image-container">
+        <img id="main-image" src="data/labyrinth.svg" alt="Лабиринт">
+    </div>
 
-    <h1>Hello World!</h1>
-    <p>Это тестовая веб-страница</p>
+    <script>
+        let clickCount = 0;
+        const image = document.getElementById('main-image');
 
+        image.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount >= 10) {
+                image.src = 'data/code.svg';
+                clickCount = 0;
+            }
+        });
+
+        image.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            clickCount++;
+            if (clickCount >= 10) {
+                image.src = 'data/code.svg';
+                clickCount = 0;
+            }
+        });
+    </script>
 </body>
 </html>
